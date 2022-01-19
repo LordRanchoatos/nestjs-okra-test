@@ -2,9 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as okra_client from 'okra-node';
 import { HttpService } from '@nestjs/axios';
 import { accountIdDto } from './dto/accountId.dto';
-import { ConfigService } from '@nestjs/config';
-
-
+// import { ConfigService } from '@nestjs/config';
 
 const accessToken = '3e5893c8-492a-54eb-a5d6-a2aeb051c8f9';
 
@@ -16,18 +14,17 @@ export class OkraService {
 
   // private readonly HEADERS: any;
   constructor(
-    private readonly axios: HttpService,
-    //private readonly configService: ConfigService,
-    ) {
-      // this.url = this.configService.get<string>('OKRA_BASE_URL');
-      // this.key = this.configService.get<string>('OKRA_SECRET_KEY');
-      // this.HEADERS = {
-      //   Accept: 'application/json; charset=utf-8',
-      //   'content-Type': 'application/json',
-      //   Authorization:
-      //     `Bearer ${this.key}`,
-      //   };
-    }
+    private readonly axios: HttpService, //private readonly configService: ConfigService,
+  ) {
+    // this.url = this.configService.get<string>('OKRA_BASE_URL');
+    // this.key = this.configService.get<string>('OKRA_SECRET_KEY');
+    // this.HEADERS = {
+    //   Accept: 'application/json; charset=utf-8',
+    //   'content-Type': 'application/json',
+    //   Authorization:
+    //     `Bearer ${this.key}`,
+    //   };
+  }
 
   async connectCustomer(): Promise<any> {
     okra_client.getAuth(accessToken, {}, (err, results) => {
@@ -42,7 +39,7 @@ export class OkraService {
   }
 
   async getBanks(): Promise<any> {
-    return new Promise((resolve, reject) => {
+    let banks = new Promise((resolve, reject) => {
       this.axios
         .get('https://api.okra.ng/v2/banks/list', {
           headers: { 'content-Type': 'application/json' },
@@ -52,6 +49,7 @@ export class OkraService {
           error: (error) => reject(error.response),
         });
     });
+    return banks;
   }
 
   async getCustomers(): Promise<any> {
@@ -78,7 +76,7 @@ export class OkraService {
       this.axios
         .post(
           'https://api.okra.ng/v2/balance/getById',
-          { id: '60ea1df17a75b909814cce74' },
+          { id: id },
           {
             headers: {
               Accept: 'application/json; charset=utf-8',
@@ -103,8 +101,8 @@ export class OkraService {
     let transactions = new Promise((resolve, reject) => {
       this.axios
         .post(
-          'https://api.okra.ng/v2/transactions/getById',
-          { id: id },
+          'https://api.okra.ng/v2/transactions/getByCustomer',
+          { customer: id },
           {
             headers: {
               Accept: 'application/json; charset=utf-8',
@@ -115,7 +113,9 @@ export class OkraService {
           },
         )
         .subscribe({
-          next: (response) => resolve(response.data),
+          next: (response) => {
+            resolve(response.data);
+          },
           error: (error) => reject(error.response),
         });
     });
