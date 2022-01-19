@@ -7,7 +7,7 @@ export class OkraController {
   constructor(private readonly okraService: OkraService) {}
 
   @Get('/:id/transactions')
-  async getTrax(@Param('id') id: accountIdDto ): Promise<any> {
+  async getTrax(@Param('id') id: accountIdDto): Promise<any> {
     return this.okraService.getTrax(id);
   }
 
@@ -35,13 +35,14 @@ export class OkraController {
 
   @Get('/:id/balance')
   async getBalance(@Param('id') id: accountIdDto): Promise<any> {
-    const balance = this.okraService.fetchBalance(id);
-    balance.catch((err) => {
-      return err;
-    });
-    balance.then((response) => {
-      return response;
-    });
+    const balance = await this.okraService.fetchBalance(id);
+    return balance;
+    // balance.catch((err) => {
+    //   return err;
+    // });
+    // balance.then((response) => {
+    //   return response;
+    // });
   }
 
   @Post('/:id/charge')

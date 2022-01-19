@@ -75,8 +75,8 @@ export class OkraService {
     return new Promise((resolve, reject) => {
       this.axios
         .post(
-          'https://api.okra.ng/v2/balance/getById',
-          { id: id },
+          'https://api.okra.ng/v2/balance/getByCustomer',
+          { customer: id },
           {
             headers: {
               Accept: 'application/json; charset=utf-8',
