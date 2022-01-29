@@ -37,12 +37,6 @@ export class OkraController {
   async getBalance(@Param('id') id: accountIdDto): Promise<any> {
     const balance = await this.okraService.fetchBalance(id);
     return balance;
-    // balance.catch((err) => {
-    //   return err;
-    // });
-    // balance.then((response) => {
-    //   return response;
-    // });
   }
 
   @Post('/:id/charge')
