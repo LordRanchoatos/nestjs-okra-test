@@ -60,7 +60,7 @@ export class OkraService {
             Accept: 'application/json; charset=utf-8',
             'content-Type': 'application/json',
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0ZWIyNzU4MmM3MjE3NGY4MDBlMGIiLCJpYXQiOjE2MjI0Njk0MTZ9.wwwwCV0dqMC0H_WQhkFVdU4pqEAMncjWgrPhC5nGmn0',
+              `Bearer ${yourtoken}`,
           },
         })
         .subscribe({
@@ -82,7 +82,7 @@ export class OkraService {
               Accept: 'application/json; charset=utf-8',
               'content-Type': 'application/json',
               Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0ZWIyNzU4MmM3MjE3NGY4MDBlMGIiLCJpYXQiOjE2MjI0Njk0MTZ9.wwwwCV0dqMC0H_WQhkFVdU4pqEAMncjWgrPhC5nGmn0',
+                `Bearer ${yourtoken}`,
             },
           },
         )
@@ -108,7 +108,7 @@ export class OkraService {
               Accept: 'application/json; charset=utf-8',
               'content-Type': 'application/json',
               Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI0ZWIyNzU4MmM3MjE3NGY4MDBlMGIiLCJpYXQiOjE2MjI0Njk0MTZ9.wwwwCV0dqMC0H_WQhkFVdU4pqEAMncjWgrPhC5nGmn0',
+                `Bearer ${yourtoken}`,
             },
           },
         )
