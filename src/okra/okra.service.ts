@@ -4,7 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { accountIdDto } from './dto/accountId.dto';
 // import { ConfigService } from '@nestjs/config';
 
-const accessToken = '3e5893c8-492a-54eb-a5d6-a2aeb051c8f9';
+const accessToken = 'token';
 
 @Injectable()
 export class OkraService {
